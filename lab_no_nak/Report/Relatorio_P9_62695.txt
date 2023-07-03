@@ -1,0 +1,31 @@
+Sistemas de Telecomunicações  2022 / 2023
+Aula prática:  P9
+Aluno 62695
+
+Protocolo:  GoBackN Flow 
+1. Emissão
+Ficheiro
+GoBackN_FlowC.java
+Variáveis de estado
+* next_frame_to_send- Número de sequência da próxima trama DATA a enviar
+* window_buffer- Buffer das tramas DATA enviadas
+* window_size- Tamanho da janela a ser usada
+* base- Número de sequência da primeira trama DATA da janela 
+* last- Número de sequência da última trama DATA da janela
+* is_retrans- Indica se está a ser feita uma retransmissão 
+* count_retran- Número de sequência da próxima trama DATA a enviarEventos recebidos / Ação
+* start_simulation
+Arranque da aplicação / Envia primeira trama DATA* handle_Data_end
+Fim de envio de trama DATA / Envia a próxima trama DATA* handle_Data_Timer
+O data timer expira / Retransmite as tramas DATA* handle_ack_Timer
+O ack timer expira / Envia o ack do último frame DATA recebido com sucesso2. Receção
+Ficheiro
+GoBackN_FlowC.java
+Variáveis de estado
+* frame_expected
+Número de sequência esperadoEventos recebidos / Ação
+* from_physical_layer
+Recebe tramas:
+* DATA (campos seq e info) / Envia para camada rede
+* ACK (campo ack) / Envia a próxima trama DATA
+* NAK (campo nak) / Retransmite tramas DATA a partir do nak recebido
